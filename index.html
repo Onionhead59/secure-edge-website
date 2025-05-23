@@ -20,57 +20,57 @@
     .service { margin-bottom: 30px; }
     footer { text-align: center; padding: 30px 20px; background-color: #1b3a57; color: #fff; }
     footer a { color: #fff; text-decoration: underline; }
+
     form {
-  max-width: 500px;
-  margin: 0 auto;
-  background: #ffffff;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
-}
-
-form label {
-  font-weight: 600;
-  color: #1b3a57;
-  display: block;
-  margin-bottom: 6px;
-}
-
-form input,
-form textarea {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 20px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 1rem;
-}
-
-form button {
-  background-color: #1b3a57;
-  color: white;
-  border: none;
-  padding: 12px 20px;
-  font-size: 1rem;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-form button:hover {
-  background-color: #14496f;
-}  </style>
+      max-width: 500px;
+      margin: 0 auto;
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
+    }
+    form label {
+      font-weight: 600;
+      color: #1b3a57;
+      display: block;
+      margin-bottom: 6px;
+    }
+    form input,
+    form textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+    form button {
+      background-color: #1b3a57;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      font-size: 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    form button:hover {
+      background-color: #14496f;
+    }
+  </style>
 </head>
 <body>
   <header>
     <h1>SecureEdge AI Advisory</h1>
     <p>Smarter Tech. Safer Business.</p>
   </header>
+
   <section class="hero">
     <img src="images/secureedge-banner.png" alt="SecureEdge AI Advisory Graphic">
     <h2>AI + Cybersecurity Solutions for Small Business</h2>
     <p>We help you implement practical AI tools and strengthen cybersecurity without needing a full-time tech team.</p>
   </section>
+
   <section class="services">
     <h3>Our Services</h3>
     <div class="service"><strong>Free Discovery Session</strong>
@@ -86,28 +86,54 @@ form button:hover {
       <p>Stay ahead with regular check-ins, alerts, and expert support tailored for growing businesses.</p>
     </div>
   </section>
+
   <section class="about">
     <h3>About Your Advisor</h3>
     <p>Kris Boehm is a seasoned cybersecurity and AI strategist with 15+ years of experience helping businesses translate technology into results. From pre-sales consulting to AI integrations, Kris brings technical clarity with business relevance.</p>
   </section>
+
   <section class="contact">
-  <h3>Let’s Talk</h3>
-  <form action="https://formspree.io/f/meogwwjy" method="POST">
-    <label for="name">Name</label><br>
-    <input type="text" id="name" name="name" required><br><br>
+    <h3>Let’s Talk</h3>
+    <form action="https://formspree.io/f/meogwwjy" method="POST" id="contact-form">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" required>
 
-    <label for="email">Email</label><br>
-    <input type="email" id="email" name="_replyto" required><br><br>
+      <label for="email">Email</label>
+      <input type="email" id="email" name="_replyto" required>
 
-    <label for="message">Message</label><br>
-    <textarea id="message" name="message" rows="5" required></textarea><br><br>
+      <label for="message">Message</label>
+      <textarea id="message" name="message" rows="5" required></textarea>
 
-    <button type="submit">Send</button>
-  </form>
-</section>
+      <button type="submit">Send</button>
+    </form>
+    <div id="form-success" style="display:none; margin-top:20px; color: green; font-weight: bold;">
+      ✅ Thanks for reaching out — I’ll be in touch shortly!
+    </div>
   </section>
+
   <footer>
     <p>&copy; 2025 SecureEdge AI Advisory. All rights reserved.</p>
   </footer>
+
+  <script>
+    const form = document.getElementById("contact-form");
+    form.addEventListener("submit", function(event) {
+      event.preventDefault();
+      const data = new FormData(form);
+      const xhr = new XMLHttpRequest();
+      xhr.open(form.method, form.action);
+      xhr.setRequestHeader("Accept", "application/json");
+      xhr.onreadystatechange = () => {
+        if (xhr.readyState !== XMLHttpRequest.DONE) return;
+        if (xhr.status === 200) {
+          form.style.display = "none";
+          document.getElementById("form-success").style.display = "block";
+        } else {
+          alert("Oops! Something went wrong. Please try again later.");
+        }
+      };
+      xhr.send(data);
+    });
+  </script>
 </body>
 </html>
